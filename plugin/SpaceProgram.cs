@@ -6,9 +6,9 @@ namespace MissionController
     /// <summary>
     /// A space program.
     /// </summary>
-	public class SpaceProgram
-	{
-		public int money;
+    public class SpaceProgram
+    {
+        public int money;
         public int totalMoney;
         public int totalSpentVessels;
         public int TotalSpentKerbals;
@@ -51,13 +51,13 @@ namespace MissionController
         public string asteroidCaptureName = "none";
         public string asteroidCaptureNameCustom = "none";
 
-        public List<MissionStatus> completedMissions = new List<MissionStatus>();       
+        public List<MissionStatus> completedMissions = new List<MissionStatus>();
 
-        public List<GoalStatus> completedGoals = new List<GoalStatus> ();
+        public List<GoalStatus> completedGoals = new List<GoalStatus>();
 
-        public List<RecycledVessel> recycledVessels = new List<RecycledVessel> ();
+        public List<RecycledVessel> recycledVessels = new List<RecycledVessel>();
 
-        public List<RandomMission> randomMissions = new List<RandomMission> ();
+        public List<RandomMission> randomMissions = new List<RandomMission>();
 
         public List<FlagSystem> flagSystem = new List<FlagSystem>();
 
@@ -70,7 +70,7 @@ namespace MissionController
         public List<ModPayments> modPayments = new List<ModPayments>();
 
         public List<FinishedSavedGoal> finsihedSavedGoal = new List<FinishedSavedGoal>();
-       
+
         public void add(ModCharges m)
         {
             modCharges.Add(m);
@@ -80,11 +80,11 @@ namespace MissionController
         {
             modPayments.Add(m);
         }
-        
+
         public void add(FlagSystem m)
         {
             flagSystem.Add(m);
-        }      
+        }
 
         public void add(VesselsMade m)
         {
@@ -96,14 +96,16 @@ namespace MissionController
             hiredkerbal.Add(m);
         }
 
-        public void add(MissionStatus m) {
-            completedMissions.Add (m);
+        public void add(MissionStatus m)
+        {
+            completedMissions.Add(m);
         }
 
-        public void add(GoalStatus m) {
-            completedGoals.Add (m);
+        public void add(GoalStatus m)
+        {
+            completedGoals.Add(m);
         }
-        public void remove(GoalStatus m) 
+        public void remove(GoalStatus m)
         { completedGoals.Remove(m); }
 
         public void add(FinishedSavedGoal m)
@@ -111,16 +113,19 @@ namespace MissionController
             finsihedSavedGoal.Add(m);
         }
 
-        public void add(RecycledVessel vessel) {
-            recycledVessels.Add (vessel);
+        public void add(RecycledVessel vessel)
+        {
+            recycledVessels.Add(vessel);
         }
 
-        public void add(RandomMission mission) {
-            randomMissions.Add (mission);
+        public void add(RandomMission mission)
+        {
+            randomMissions.Add(mission);
         }
 
-        public static SpaceProgram generate() {
-            SpaceProgram sp = new SpaceProgram ();            
+        public static SpaceProgram generate()
+        {
+            SpaceProgram sp = new SpaceProgram();
             sp.money = 50000;
             sp.totalMoney = 50000;
             foreach (ProtoCrewMember CrewMember in HighLogic.CurrentGame.CrewRoster)
@@ -130,27 +135,33 @@ namespace MissionController
             }
             return sp;
         }
-        
-        public RandomMission findRandomMission(Mission m) {
-            foreach (RandomMission rm in randomMissions) {
-                if(rm.missionName.Equals(m.name)) {
+
+        public RandomMission findRandomMission(Mission m)
+        {
+            foreach (RandomMission rm in randomMissions)
+            {
+                if (rm.missionName.Equals(m.name))
+                {
                     // The random mission has been loaded already. so we need to reload it with the given seed
                     return rm;
                 }
             }
             return null;
         }
-	}
+    }
 
-    public class GoalStatus {
+    public class GoalStatus
+    {
         public String id;
         public String vesselGuid;
         public bool repeatable;
 
-        public GoalStatus() {
+        public GoalStatus()
+        {
         }
 
-        public GoalStatus(String vesselGuid, String id) {
+        public GoalStatus(String vesselGuid, String id)
+        {
             this.vesselGuid = vesselGuid;
             this.id = id;
         }
@@ -161,11 +172,14 @@ namespace MissionController
         }
     }
 
-    public class MissionStatus {
-        public MissionStatus() {
+    public class MissionStatus
+    {
+        public MissionStatus()
+        {
         }
 
-        public MissionStatus(String mission, String vesselGuid) {
+        public MissionStatus(String mission, String vesselGuid)
+        {
             this.missionName = mission;
             this.vesselGuid = vesselGuid;
         }
@@ -187,12 +201,14 @@ namespace MissionController
         public bool clientControlled = false;
     }
 
-    public class RandomMission {
+    public class RandomMission
+    {
         public String missionName;
         public int seed;
     }
 
-    public class RecycledVessel {
+    public class RecycledVessel
+    {
         public String guid;
     }
 
@@ -204,7 +220,7 @@ namespace MissionController
     {
         public String flagVesselGuid;
 
-        public FlagSystem() 
+        public FlagSystem()
         {
         }
 
@@ -226,7 +242,7 @@ namespace MissionController
         {
         }
 
-        public HiredKerbals(string kerbalname, double date, string status)            
+        public HiredKerbals(string kerbalname, double date, string status)
         {
             this.hiredKerbalName = kerbalname;
             this.DateHired = date;
@@ -243,7 +259,7 @@ namespace MissionController
         public int vesselCost;
         public string MissionName = "Player Mission";
         public int crewNumber;
-            
+
         public VesselsMade()
         {
         }
@@ -261,19 +277,19 @@ namespace MissionController
         public string ChageDescription;
         public int amount;
 
-        public ModCharges(){ }
+        public ModCharges() { }
         public ModCharges(int charge, string description)
         {
             this.amount = charge;
             this.ChageDescription = description;
-        }   
+        }
     }
 
     public class ModPayments
     {
         public string PaymentDescription;
         public int amount;
-        public ModPayments(){ }
+        public ModPayments() { }
         public ModPayments(int payment, string description)
         {
             this.amount = payment;
@@ -281,7 +297,7 @@ namespace MissionController
         }
     }
 
-    public class FinishedSavedGoal 
+    public class FinishedSavedGoal
     {
         public string name;
         public double endTime;
@@ -292,6 +308,36 @@ namespace MissionController
             this.name = mname;
             this.endTime = et;
         }
-    }    
+    }
+    public class SpaceProgramTest : ScenarioModule
+    {
+        public static SpaceProgramTest controller
+        {
+            get
+            {
+                Game g = HighLogic.CurrentGame;
+                if (g == null) return null;
+                foreach (ProtoScenarioModule mod in g.scenarios)
+                {
+                    if (mod.moduleName == typeof(SpaceProgramTest).Name)
+                    {
+                        return (SpaceProgramTest)mod.moduleRef;
+                    }
+                }
+                return (SpaceProgramTest)g.AddProtoScenarioModule(typeof(SpaceProgramTest), GameScenes.FLIGHT).moduleRef;
+            }
+            private set { }
+        }
+        [KSPField(isPersistant = true)]
+        public int money = 50000;
+
+        public override void OnLoad(ConfigNode node) { }
+        public override void OnSave(ConfigNode node) { }
+    }
 }
+    
+
+        
+	
+    
 

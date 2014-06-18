@@ -7,7 +7,7 @@ using UnityEngine;
 namespace MissionController
 {
     public class MCERoverScience: PartModule
-    {      
+    {
  
         [KSPField(isPersistant = false)]
         public static bool doResearch = false;
@@ -18,10 +18,13 @@ namespace MissionController
         Vessel vs = new Vessel();      
 
         [KSPField(isPersistant = false, guiActive = true, guiName = "Rover Landed:")]
-        private bool roverlanded = false;
+        public bool roverlanded = false;
+
+        [KSPField(isPersistant = false, guiActive = true, guiName = "Rover Landed Wet:")]
+        public bool roverlandedWet = false;
 
         [KSPField(isPersistant = false, guiActive = true, guiName = "Starting Scan:")]
-        private bool scanStart = false;
+        public bool scanStart = false;
 
         [KSPEvent(guiActive= true,guiName= "Start MCE Rover Research",active= true)]
         public void StartResearchMCE()
@@ -31,7 +34,7 @@ namespace MissionController
     
         public void checkVesselResearch()
         {
-            if (roverlanded == true)
+            if (roverlanded != false || roverlandedWet != false)
             {
                 doResearch = true;              
                 ScreenMessages.PostScreenMessage("Starting Scan of Ground Level, Please Stand By...");               
@@ -42,14 +45,29 @@ namespace MissionController
                 ScreenMessages.PostScreenMessage("Vessel needs to be landed to start scanning at ground level");              
             }
         }
+
+        public override void OnStart(PartModule.StartState state)
+        {
+            this.part.force_activate();
+        }
         
         public override void OnFixedUpdate()
         {
-            if (FlightGlobals.fetch.activeVessel.situation == Vessel.Situations.LANDED || FlightGlobals.fetch.activeVessel.situation == Vessel.Situations.SPLASHED)
+
+            if (FlightGlobals.fetch.activeVessel.situation.Equals(Vessel.Situations.LANDED))
             {
                 roverlanded = true;
+                ScreenMessages.PostScreenMessage("Landed On Dry Ground, can conduct Reserach Now");
             }
             else { roverlanded = false; }
+            
+            if (FlightGlobals.fetch.activeVessel.situation.Equals(Vessel.Situations.SPLASHED))
+            {
+                roverlandedWet = true;
+                ScreenMessages.PostScreenMessage("Landed in Liquid, I guess you won't be going far... But Research is still available.");
+            }
+            else { roverlandedWet = false;}
+            
             if (doResearch == true)
             {
                 scanStart = true;

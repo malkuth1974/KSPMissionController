@@ -357,9 +357,9 @@ namespace MissionController
         }
         public void StartContractType1Random()
         {
-            contractslist1 = new Randomizator3000.Item<int>[10];
+            contractslist1 = new Randomizator3000.Item<int>[12];
             contractslist1[0] = new Randomizator3000.Item<int>();
-            contractslist1[0].weight = 20;
+            contractslist1[0].weight = 30;
             contractslist1[0].value = 0;
 
             contractslist1[1] = new Randomizator3000.Item<int>();
@@ -397,24 +397,32 @@ namespace MissionController
             contractslist1[9] = new Randomizator3000.Item<int>();
             contractslist1[9].weight = 10;
             contractslist1[9].value = 17;
+
+            contractslist1[10] = new Randomizator3000.Item<int>();
+            contractslist1[10].weight = 10;
+            contractslist1[10].value = 18;
+
+            contractslist1[11] = new Randomizator3000.Item<int>();
+            contractslist1[11].weight = 10;
+            contractslist1[11].value = 19;
         }
         public void StartContractType2Random()
         {
             contractslist2 = new Randomizator3000.Item<int>[4];
             contractslist2[0] = new Randomizator3000.Item<int>();
-            contractslist2[0].weight = 30;
+            contractslist2[0].weight = 40;
             contractslist2[0].value = 0;
 
             contractslist2[1] = new Randomizator3000.Item<int>();
-            contractslist2[1].weight = 35;
+            contractslist2[1].weight = 15;
             contractslist2[1].value = 14;
 
             contractslist2[2] = new Randomizator3000.Item<int>();
-            contractslist2[2].weight = 25;
+            contractslist2[2].weight = 20;
             contractslist2[2].value = 15;
 
             contractslist2[3] = new Randomizator3000.Item<int>();
-            contractslist2[3].weight = 10;
+            contractslist2[3].weight = 5;
             contractslist2[3].value = 16;
         }
         /// <summary>
@@ -630,15 +638,13 @@ namespace MissionController
             currentProgram.randomOrbitscience = bodyinfodict[randnum].baseScience;
             Debug.Log("This body has been chosen for RandomOrbit " + bodyinfodict[randnum].Planet.ToString() + "Base pay: " + currentProgram.randomOrbitPay);
 
-            randnum = rnd2.Next(5, 18);
-            Debug.Log("RandomLanding: " + randnum);
+            int randnum2 = rnd2.Next(5, 18);
+            Debug.Log("RandomLanding: " + randnum2);
 
-            currentProgram.randomLanding = bodyinfodict[randnum].Planet.ToString();
-            currentProgram.randomLandingPay = bodyinfodict[randnum].basePay;
-            currentProgram.randomLandingScience = bodyinfodict[randnum].baseScience;
-            Debug.Log("This body has been chosen for RandomLanding " + bodyinfodict[randnum].Planet.ToString() + "Base Pay: " + currentProgram.randomLandingPay);
-
-            bodyinfodict.Clear();
+            currentProgram.randomLanding = bodyinfodict[randnum2].Planet.ToString();
+            currentProgram.randomLandingPay = bodyinfodict[randnum2].basePay;
+            currentProgram.randomLandingScience = bodyinfodict[randnum2].baseScience;
+            Debug.Log("This body has been chosen for RandomLanding " + bodyinfodict[randnum2].Planet.ToString() + "Base Pay: " + currentProgram.randomLandingPay);
         }
 
        
@@ -1040,6 +1046,12 @@ namespace MissionController
         /// <value>The budget.</value>
         public int budget {
             get { return currentProgram.money; }
+        }
+
+        public int testBudget(int value)
+        {
+            SpaceProgramTest spt = new SpaceProgramTest();
+            return spt.money += value;
         }
 
         /// <summary>
@@ -1491,7 +1503,8 @@ namespace MissionController
                     value = (int)((double)value * mult);
                 }
                 latestExpenses = -value;
-                currentProgram.money += (int)((double)value * PayoutLeveles.TechPayout);                
+                currentProgram.money += (int)((double)value * PayoutLeveles.TechPayout);
+                testBudget(value);
             }
             return currentProgram.money;
         }
