@@ -31,6 +31,10 @@ So example would be malkuths(CAREER).sp.  There is also a backup file for the .s
 
 All mission package files are called .mpkg files.  So name.mpkg (randommissions.mpkg).
 
+## Installing Updates to MCE.
+
+Installing Updates to MCE is pretty easy you can safely just overwrite everything in MCE folder with new version.  Most of the time the updates are only .dll file updates.  And your save games are usually your unique game name .sp file.  So most of the time your save file is safe.  Most mods want you to delete the folders when you update.  This is because they are Part Mods and sometimes old parts are moved arouhnd or deleted.  This usually is not the case for MCE!  If the case of and update that requires you to delete MCE folder ever comes up, I will warn you well in advanced! Usually in the Update Log for MCE!  But in any case I always highly suggest that you backup both MCE and your KSP save files on a regular basis!  And save them to a Non KSP directory!
+
 ## The MCSettings File
 
 This is an important file, with this file you can change any value that you want in Mission controller!  Don't like prices this file is where its changed.  
