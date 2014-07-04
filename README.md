@@ -51,8 +51,10 @@ Well now that .24 is coming out, hopefully this will not be an issue anymore!  A
 
 Be aware that using default prices might make MCE a lot easier.  Thats because some of the prices in the configs are not really that balanced.  I highly suggest editing the MCSettings.cfg file and editing these lines and change the values to these settings.
 
-payoutmode0 = .8  //this is default mode.  
+payoutmode0 = .8  //this is default mode.
+
 payoutmode1 = .9  //only used in career mode
+
 payoutmode2 = 1 //only used in career mode
 
 You can even go lower.  Even at these settings I have found MCE to be to easy I suggest at least .6, .7, .8!
