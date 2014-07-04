@@ -43,7 +43,7 @@ To install mission controller all you need to do is to place the MissionControll
 
 The ToolBarMenu can also be placed inside the GameData Folder The Toolbar is what gives you all your icons for MCE and other plugins that use Blizzy's ToolBar.
 
- ## New option for using Default Kerbal Prices In MCE or Use MCE Prices!  Version .72
+## New option for using Default Kerbal Prices In MCE or Use MCE Prices!  Version .72
  
 Things have changed a little in MCE.  Before MCE always used its own Algorithms to price out the Parts that you place on your Rockets.  This was needed, because a lot of mods were not supplying a Cost to their parts, and would be free in MCE. So we added our own prices that automatically update at startup.
 
