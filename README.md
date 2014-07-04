@@ -31,6 +31,13 @@ So example would be malkuths(CAREER).sp.  There is also a backup file for the .s
 
 All mission package files are called .mpkg files.  So name.mpkg (randommissions.mpkg).
 
+## installing Mission Controller:
+
+To install mission controller all you need to do is to place the MissionControll File folder you found in the .zip file inside the GameData folder.  Thats it, plugin installed!
+
+The ToolBarMenu can also be placed inside the GameData Folder The Toolbar is what gives you all your icons for MCE and other plugins that use Blizzy's ToolBar.
+
+
 ## Installing Updates to MCE.
 
 Installing Updates to MCE is pretty easy you can safely just overwrite everything in MCE folder with new version.  Most of the time the updates are only .dll file updates.  And your save games are usually your unique game name .sp file.  So most of the time your save file is safe.  Most mods want you to delete the folders when you update.  This is because they are Part Mods and sometimes old parts are moved arouhnd or deleted.  This usually is not the case for MCE!  If the case of and update that requires you to delete MCE folder ever comes up, I will warn you well in advanced! Usually in the Update Log for MCE!  But in any case I always highly suggest that you backup both MCE and your KSP save files on a regular basis!  And save them to a Non KSP directory!
@@ -41,11 +48,6 @@ This is an important file, with this file you can change any value that you want
 
 Its located it: Kerbal Space Program\GameData\MissionController\Plugins
 
-## installing Mission Controller:
-
-To install mission controller all you need to do is to place the MissionControll File folder you found in the .zip file inside the GameData folder.  Thats it, plugin installed!
-
-The ToolBarMenu can also be placed inside the GameData Folder The Toolbar is what gives you all your icons for MCE and other plugins that use Blizzy's ToolBar.
 
 ## New option for using Default Kerbal Prices In MCE or Use MCE Prices!  Version .72
  
