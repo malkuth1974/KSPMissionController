@@ -42,6 +42,22 @@ Its located it: Kerbal Space Program\GameData\MissionController\Plugins
 To install mission controller all you need to do is to place the MissionControll File folder you found in the .zip file inside the GameData folder.  Thats it, plugin installed!
 
 The ToolBarMenu can also be placed inside the GameData Folder The Toolbar is what gives you all your icons for MCE and other plugins that use Blizzy's ToolBar.
+
+ ## New option for using Default Kerbal Prices In MCE or Use MCE Prices!  Version .72
+ 
+Things have changed a little in MCE.  Before MCE always used its own Algorithms to price out the Parts that you place on your Rockets.  This was needed, because a lot of mods were not supplying a Cost to their parts, and would be free in MCE. So we added our own prices that automatically update at startup.
+
+Well now that .24 is coming out, hopefully this will not be an issue anymore!  At default MCE still uses its own prices.  But now you have an option to change this.  Load up KSP and Go to the MCE settings Menu in game.  And change the USe MCE prices to false.  This will make it for MCE uses the actual cost supplied by the parts config file!  Then Reload KSP to make the settings load.  Thats it.  
+
+Be aware that using default prices might make MCE a lot easier.  Thats because some of the prices in the configs are not really that balanced.  I highly suggest editing the MCSettings.cfg file and editing these lines and change the values to these settings.
+
+payoutmode0 = .8  //this is default mode.  
+payoutmode1 = .9  //only used in career mode
+payoutmode2 = 1 //only used in career mode
+
+You can even go lower.  Even at these settings I have found MCE to be to easy I suggest at least .6, .7, .8!
+
+
 ##New Mission Controller Extended Version .50 And Beyond
 
 Welcome to the new mission controller.  .50 has brought a bunch of new features to MCE in hopes of getting MCE as close as possible to match the new Kerbal Space Program .24 when it is released.
