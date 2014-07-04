@@ -18,7 +18,30 @@ So enjoy MCE .50 and build those Space Programs.
 Malkuth.
 
 
+## You Mission Controller Save File and other important files
+Your mission controller save file is located in \Kerbal Space Program\GameData\MissionController\Plugins\PluginData
 
+If you use steam its most likely located in your steam directory with same folder layout.
+
+You Mission Files are located in the same folder as save game file.
+
+All save game files have extension of .sp file.  The file name is the nameOfGame(type).sp file.
+
+So example would be malkuths(CAREER).sp.  There is also a backup file for the .sp, and has backup added to its Name.
+
+All mission package files are called .mpkg files.  So name.mpkg (randommissions.mpkg).
+
+## The MCSettings File
+
+This is an important file, with this file you can change any value that you want in Mission controller!  Don't like prices this file is where its changed.  
+
+Its located it: Kerbal Space Program\GameData\MissionController\Plugins
+
+## installing Mission Controller:
+
+To install mission controller all you need to do is to place the MissionControll File folder you found in the .zip file inside the GameData folder.  Thats it, plugin installed!
+
+The ToolBarMenu can also be placed inside the GameData Folder The Toolbar is what gives you all your icons for MCE and other plugins that use Blizzy's ToolBar.
 ##New Mission Controller Extended Version .50 And Beyond
 
 Welcome to the new mission controller.  .50 has brought a bunch of new features to MCE in hopes of getting MCE as close as possible to match the new Kerbal Space Program .24 when it is released.
