@@ -232,6 +232,9 @@ This will hide all of MCE Windows. Not including the Actual tool bar. The tool b
 This will give you a list of all the construction cost for your vessel.  MCE uses its own values to give KSP parts Values. And does not use the default KSP Cost. This was done to insure that even Mod parts will have values.
 
 ##Revert Button:
+
+You can use the MCE revert button as a test bed for your rockets.  Build a new rocket and launch it to find out if it works or not.  When done testing or crashing your rocket press the MCE revert button (Circle arrow) you will be charged 1000 Credit for the test flight. 
+
 only available in flight use this instead of the KSP revert button. Since MCE has its own save file separate from KSP Persistence save file this button helps keep MCE and KSP in check with each other.  If you use the KSP button you could mess up missions.  For instance If you were doing a mission and it has 3 goals.  You completed 2 goals. (MCE saves those goals along with vessel id) on the 3rd goal you crashed and burned.  So you decide to revert with KSP.  Well once you launch the new vessel it will have a new Ship ID.  And since MCE keeps track of what vessel is doing current mission once you get to Goal 3 you won’t be able to complete it!  Because the Ship ID has changed and no longer matches.
 
 To stop this from happening I added MCE revert button. This button reverts both MCE and KSP at the same time.  Deleting any possible goals you might have completed for that mission and starting it over for you.
