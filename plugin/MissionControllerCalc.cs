@@ -9,7 +9,8 @@ namespace MissionController
     /// This part of the class calculates the vesselResources and the current Status
     /// </summary>
     public partial class MissionController
-    {       
+    {      
+
         /// <summary>
         /// Calculates the mission status. Some fields are not set by this method unless the passed mission
         /// is the currently selected mission1!!
@@ -18,7 +19,7 @@ namespace MissionController
         /// <param name="mission">Mission.</param>
         private Status calculateStatus(Mission mission, bool fullCheck = false, Vessel vessel = null)
         {
-            Status s = new Status();
+            Status s = new Status();           
 
             // Fill the mission status fields
             if (mission != null)
@@ -178,6 +179,10 @@ namespace MissionController
 
         private class VesselResources
         {
+            private Settings settings
+            {
+                get { return SettingsManager.Manager.getSettings(); }
+            }
 
             public int crewCount = 0;
             public double engineCost = 0;
@@ -225,10 +230,16 @@ namespace MissionController
                     if (!usesnapshots)
                     {
                         foreach (Part p in parts)
-                        {
-                            //int cst = p.partInfo.cost;
-                            int cst = PartCost.cost(p); // for procedural parts, have to redo each time.
+                        {                           
+                                                       
+                            int cst = p.partInfo.cost;
+                                                           
+                            if (settings.disableMCEPrice == false)
+                            {
+                                cst = PartCost.cost(p); // for procedural parts, have to redo each time.                               
+                            }
                             p.partInfo.cost = cst; // so it's stored in snapshot, I hope.
+                            
 
                             //print("part " + p.name + " has cost " + cst);
                             if (p.partInfo.category.Equals(PartCategories.Propulsion))

@@ -42,7 +42,7 @@ namespace MissionController
             GUILayout.Box("ToolBar Mod By Blizzy78", StyleBoxWhite, GUILayout.Width(225), GUILayout.Height(30));
             GUILayout.EndHorizontal();
 
-            GUILayout.Space(25);
+            GUILayout.Space(15);
 
             ConstructionMode CM = new ConstructionMode();         
             
@@ -57,6 +57,19 @@ namespace MissionController
             {
                 GUILayout.Box("FALSE", StyleBoxYellow, GUILayout.Width(112), GUILayout.Height(30));
             }           
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Box("MCE Price Disable", StyleBoxYellow, GUILayout.Width(112), GUILayout.Height(30));
+            if (settings.disableMCEPrice == true)
+            {
+                GUILayout.Box("TRUE", StyleBoxGreen, GUILayout.Width(112), GUILayout.Height(30));
+            }
+
+            if (settings.disableMCEPrice == false)
+            {
+                GUILayout.Box("FALSE", StyleBoxYellow, GUILayout.Width(112), GUILayout.Height(30));
+            }
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
@@ -89,10 +102,24 @@ namespace MissionController
             if (GUILayout.Button("Disable Plugin",styleButtonWordWrap))
             {
                 settings.disablePlugin = !settings.disablePlugin;
-            }
+            }            
             if (GUILayout.Button("i", GUILayout.Width(25), GUILayout.Height(25)))
             {
                 messageEvent = "Will disable MCE plugin, any ship you launch while plugin is disabled will be flagged and can never be used in a Mission! While disabled nothing cost money.";
+                showEventWindow = true;
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("Disable Price changes", styleButtonWordWrap))
+            {
+                settings.disableMCEPrice = !settings.disableMCEPrice;
+                messageEvent = "you will have to Restart Kerbal Space Program for this to take effect";
+                showEventWindow = true;
+            }
+            if (GUILayout.Button("i", GUILayout.Width(25), GUILayout.Height(25)))
+            {
+                messageEvent = "Disable MCE prices Algorithms and use default kerbal space Program prices.  Warning if part does not have a cost, it will be free.  Not all Pre-KSP .24 make sense so beware. You will have to restart KSP to take Effect!";
                 showEventWindow = true;
             }
             GUILayout.EndHorizontal();
@@ -120,7 +147,6 @@ namespace MissionController
                 showEventWindow = true;
             }
             GUILayout.EndHorizontal();
-            GUILayout.Space(10);
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Allow Multi Stage Landings", styleButtonWordWrap))

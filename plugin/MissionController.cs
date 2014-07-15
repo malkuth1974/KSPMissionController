@@ -353,6 +353,10 @@ namespace MissionController
             LoadDictionary();
             manager.loadbodydestinationdict();
             Debug.Log("Body Dictionary was loaded");
+            if (settings.disableMCEPrice != false)
+            {
+                Tools.FindMCSettings();
+            }
 
             button = ToolbarManager.Instance.add("MC1", "Settings1");
             button.TexturePath = "MissionController/icons/settings";
@@ -733,7 +737,7 @@ namespace MissionController
                 canRecycle = true; // reenable once exit flight               
             }           
             // NK
-            if (!partsCostCorrected)
+            if (!partsCostCorrected && settings.disableMCEPrice == false)
             {
                 Tools.FindMCSettings();
 
@@ -846,56 +850,56 @@ namespace MissionController
 
             if (showUserContractWindowStatus && hideMCtoolbarsviews)
             {
-                userContractWindowStatus = GUILayout.Window(91311, userContractWindowStatus, drawUserContractWindow, "Player Custom Contracts", GUILayout.MinHeight(700), GUILayout.MinWidth(450));
+                userContractWindowStatus = GUILayout.Window(91311, userContractWindowStatus, drawUserContractWindow, "Player Custom Contracts", GUILayout.MaxHeight(725), GUILayout.MaxWidth(475), GUILayout.MinHeight(700), GUILayout.MinWidth(450));
                 userContractWindowStatus.x = Mathf.Clamp(userContractWindowStatus.x, 0, Screen.width - userContractWindowStatus.width);
                 userContractWindowStatus.y = Mathf.Clamp(userContractWindowStatus.y, 0, Screen.height - userContractWindowStatus.height);
             }
 
             if (showVabShipWindow && hideMCtoolbarsviews)
             {
-                VabShipWindow = GUILayout.Window(81989, VabShipWindow, drawVabShipWindow, "Ship Breakdown List",GUILayout.MinHeight(400), GUILayout.MinWidth(300));
+                VabShipWindow = GUILayout.Window(81989, VabShipWindow, drawVabShipWindow, "Ship Breakdown List",GUILayout.MaxHeight(425), GUILayout.MaxWidth(325),GUILayout.MinHeight(400), GUILayout.MinWidth(300));
                 VabShipWindow.x = Mathf.Clamp(VabShipWindow.x, 0, Screen.width - VabShipWindow.width);
                 VabShipWindow.y = Mathf.Clamp(VabShipWindow.y, 0, Screen.height - VabShipWindow.height);
             }
 
             if (showMissionStatusWindow && hideMCtoolbarsviews)
             {
-                MissionWindowStatus = GUILayout.Window(29901, MissionWindowStatus, drawMissionInfoWindow, "Current Mission Window",GUILayout.MinHeight(700), GUILayout.MinWidth(500));
+                MissionWindowStatus = GUILayout.Window(29901, MissionWindowStatus, drawMissionInfoWindow, "Current Mission Window", GUILayout.MaxHeight(725), GUILayout.MaxWidth(525), GUILayout.MinHeight(700), GUILayout.MinWidth(500));
                 MissionWindowStatus.x = Mathf.Clamp(MissionWindowStatus.x, 0, Screen.width - MissionWindowStatus.width);
                 MissionWindowStatus.y = Mathf.Clamp(MissionWindowStatus.y, 0, Screen.height - MissionWindowStatus.height);
             }           
 
             if (showContractStatusWindow && hideMCtoolbarsviews)
             {
-                ContractWindowStatus = GUILayout.Window(18991, ContractWindowStatus, drawContractInfoWindow, "Available Contracts", GUILayout.MinHeight(700), GUILayout.MinWidth(500));
+                ContractWindowStatus = GUILayout.Window(18991, ContractWindowStatus, drawContractInfoWindow, "Available Contracts", GUILayout.MaxHeight(725), GUILayout.MaxWidth(525), GUILayout.MinHeight(700), GUILayout.MinWidth(500));
                 ContractWindowStatus.x = Mathf.Clamp(ContractWindowStatus.x, 0, Screen.width - ContractWindowStatus.width);
                 ContractWindowStatus.y = Mathf.Clamp(ContractWindowStatus.y, 0, Screen.height - ContractWindowStatus.height);
             }            
 
             if (showSettingsWindow && hideMCtoolbarsviews)
             {
-                settingsWindowPosition = GUILayout.Window(98763, settingsWindowPosition, drawSettingsWindow, "Settings", GUILayout.MinHeight(225), GUILayout.MinWidth(175));
+                settingsWindowPosition = GUILayout.Window(98763, settingsWindowPosition, drawSettingsWindow, "Settings", GUILayout.MaxHeight(725), GUILayout.MaxWidth(200), GUILayout.MinHeight(225), GUILayout.MinWidth(175));
                 settingsWindowPosition.x = Mathf.Clamp(settingsWindowPosition.x, 0, Screen.width - settingsWindowPosition.width);
                 settingsWindowPosition.y = Mathf.Clamp(settingsWindowPosition.y, 0, Screen.height - settingsWindowPosition.height);
             }
 
             if (showMissionPackageBrowser && hideMCtoolbarsviews)
             {
-                packageWindowPosition = GUILayout.Window(98762, packageWindowPosition, drawPackageWindow, currentPackage.name, GUILayout.MinHeight(700), GUILayout.MinWidth(1000));
+                packageWindowPosition = GUILayout.Window(98762, packageWindowPosition, drawPackageWindow, currentPackage.name, GUILayout.MaxHeight(725), GUILayout.MaxWidth(1010), GUILayout.MinHeight(700), GUILayout.MinWidth(1000));
                 packageWindowPosition.x = Mathf.Clamp(packageWindowPosition.x, 0, Screen.width - packageWindowPosition.width);
                 packageWindowPosition.y = Mathf.Clamp(packageWindowPosition.y, 0, Screen.height - packageWindowPosition.height);
             }
 
             if (showContractSelection && hideMCtoolbarsviews)
             {
-                contractWindowPosition = GUILayout.Window(24321, contractWindowPosition, drawContractsWindow, currentPackage.name, GUILayout.MinHeight(700), GUILayout.MinWidth(520));
+                contractWindowPosition = GUILayout.Window(24321, contractWindowPosition, drawContractsWindow, currentPackage.name, GUILayout.MaxHeight(725), GUILayout.MaxWidth(675), GUILayout.MinHeight(700), GUILayout.MinWidth(650));
                 contractWindowPosition.x = Mathf.Clamp(contractWindowPosition.x, 0, Screen.width - contractWindowPosition.width);
                 contractWindowPosition.y = Mathf.Clamp(contractWindowPosition.y, 0, Screen.height - contractWindowPosition.height);
             }
 
             if (showFinanceWindow && hideMCtoolbarsviews)
             {
-                financeWindowPosition = GUILayout.Window(38761, financeWindowPosition, drawFinaceWindow, "Finance Window", GUILayout.MinHeight(350), GUILayout.MinWidth(300));
+                financeWindowPosition = GUILayout.Window(38761, financeWindowPosition, drawFinaceWindow, "Finance Window", GUILayout.MaxHeight(375), GUILayout.MaxWidth(325), GUILayout.MinHeight(350), GUILayout.MinWidth(300));
                 financeWindowPosition.x = Mathf.Clamp(financeWindowPosition.x, 0, Screen.width - financeWindowPosition.width);
                 financeWindowPosition.y = Mathf.Clamp(financeWindowPosition.y, 0, Screen.height - financeWindowPosition.height);
             }           
@@ -921,28 +925,28 @@ namespace MissionController
 
             if (showResearchTreeWindow && hideMCtoolbarsviews)
             {
-                researchtreewinpostion = GUILayout.Window(98760, researchtreewinpostion, drawResearchTree, "Research Window", GUILayout.MinHeight(350), GUILayout.MinWidth(500));
+                researchtreewinpostion = GUILayout.Window(98760, researchtreewinpostion, drawResearchTree, "Research Window", GUILayout.MaxHeight(375), GUILayout.MaxWidth(525), GUILayout.MinHeight(350), GUILayout.MinWidth(500));
                 researchtreewinpostion.x = Mathf.Clamp(researchtreewinpostion.x, 0, Screen.width - researchtreewinpostion.width);
                 researchtreewinpostion.y = Mathf.Clamp(researchtreewinpostion.y, 0, Screen.height - researchtreewinpostion.height);
             }
 
             if (showKerbalLogbookHire && hideMCtoolbarsviews)
             {
-                kerbalLogBookHirePostion = GUILayout.Window(9818882, kerbalLogBookHirePostion, drawKerbalLogBookHire, "Kerbal Hired Log Book", GUILayout.MinHeight(350), GUILayout.MinWidth(540));
+                kerbalLogBookHirePostion = GUILayout.Window(9818882, kerbalLogBookHirePostion, drawKerbalLogBookHire, "Kerbal Hired Log Book", GUILayout.MaxHeight(375), GUILayout.MaxWidth(555), GUILayout.MinHeight(350), GUILayout.MinWidth(540));
                 kerbalLogBookHirePostion.x = Mathf.Clamp(kerbalLogBookHirePostion.x, 0, Screen.width - kerbalLogBookHirePostion.width);
                 kerbalLogBookHirePostion.y = Mathf.Clamp(kerbalLogBookHirePostion.y, 0, Screen.height - kerbalLogBookHirePostion.height);
             }
 
             if (showMissionLogbookWindow && hideMCtoolbarsviews)
             {
-                missionLogBookPostion = GUILayout.Window(988889, missionLogBookPostion, drawmMissionLogBook, "Mission Log Book", GUILayout.MinHeight(500), GUILayout.MinWidth(1045));
+                missionLogBookPostion = GUILayout.Window(988889, missionLogBookPostion, drawmMissionLogBook, "Mission Log Book", GUILayout.MaxHeight(350), GUILayout.MaxWidth(1050), GUILayout.MinHeight(500), GUILayout.MinWidth(1045));
                 missionLogBookPostion.x = Mathf.Clamp(missionLogBookPostion.x, 0, Screen.width - missionLogBookPostion.width);
                 missionLogBookPostion.y = Mathf.Clamp(missionLogBookPostion.y, 0, Screen.height - missionLogBookPostion.height);
             }
 
             if (showShipLogBookWindow && hideMCtoolbarsviews)
             {
-                shipLogBook = GUILayout.Window(98128889, shipLogBook, drawShipLogBook, "Ship Log Book ", GUILayout.MinHeight(500), GUILayout.MinWidth(960));
+                shipLogBook = GUILayout.Window(98128889, shipLogBook, drawShipLogBook, "Ship Log Book ", GUILayout.MaxHeight(525), GUILayout.MaxWidth(965), GUILayout.MinHeight(500), GUILayout.MinWidth(960));
                 shipLogBook.x = Mathf.Clamp(shipLogBook.x, 0, Screen.width - shipLogBook.width);
                 shipLogBook.y = Mathf.Clamp(shipLogBook.y, 0, Screen.height - shipLogBook.height);
             }            

@@ -35,6 +35,7 @@ namespace MissionController
         private string currentgoalName;
 
         public int currentContractPayment = 0;
+        public int currentMissionPayment = 0;
 
         private int latestExpenses = 0;
 
@@ -68,7 +69,7 @@ namespace MissionController
         public Manager() {
             currentTitle = "default (Sandbox)";
             parser = new Parser();
-            loadProgram (currentTitle);
+            loadProgram (currentTitle);          
         }
 
         /// <summary>
@@ -95,10 +96,10 @@ namespace MissionController
             currentTitle = title;
             try {
                 spaceProgram = (SpaceProgram) parser.readFile (currentSpaceProgramFile);
-                Debug.Log("MCE Space Program save File Loaded: " + HighLogic.CurrentGame.Title.ToString() + ".sp");
+                Debug.Log("MCE Space Program save File Loaded: " + HighLogic.CurrentGame.Title.ToString() + ".sp");               
             } catch {
                 spaceProgram = SpaceProgram.generate();
-                Debug.Log("MCE New space Program Created under Name: " + HighLogic.CurrentGame.Title.ToString() + ".sp");
+                Debug.Log("MCE New space Program Created under Name: " + HighLogic.CurrentGame.Title.ToString() + ".sp");                
             }
         }
 
@@ -329,7 +330,7 @@ namespace MissionController
         /// </summary>
         public void StartContractTypeRandom()
         {
-            contractslist = new Randomizator3000.Item<int>[6];
+            contractslist = new Randomizator3000.Item<int>[9];
             contractslist[0] = new Randomizator3000.Item<int>();
             contractslist[0].weight = 35;
             contractslist[0].value = 0;
@@ -353,6 +354,18 @@ namespace MissionController
             contractslist[5] = new Randomizator3000.Item<int>();
             contractslist[5].weight = 10;
             contractslist[5].value = 5;
+
+            contractslist[6] = new Randomizator3000.Item<int>();
+            contractslist[6].weight = 10;
+            contractslist[6].value = 21;
+
+            contractslist[7] = new Randomizator3000.Item<int>();
+            contractslist[7].weight = 10;
+            contractslist[7].value = 22;
+
+            contractslist[8] = new Randomizator3000.Item<int>();
+            contractslist[8].weight = 10;
+            contractslist[8].value = 23;
 
         }
         public void StartContractType1Random()
@@ -408,7 +421,7 @@ namespace MissionController
         }
         public void StartContractType2Random()
         {
-            contractslist2 = new Randomizator3000.Item<int>[4];
+            contractslist2 = new Randomizator3000.Item<int>[6];
             contractslist2[0] = new Randomizator3000.Item<int>();
             contractslist2[0].weight = 40;
             contractslist2[0].value = 0;
@@ -424,6 +437,14 @@ namespace MissionController
             contractslist2[3] = new Randomizator3000.Item<int>();
             contractslist2[3].weight = 5;
             contractslist2[3].value = 16;
+
+            contractslist2[4] = new Randomizator3000.Item<int>();
+            contractslist2[4].weight = 5;
+            contractslist2[4].value = 20;
+
+            contractslist2[5] = new Randomizator3000.Item<int>();
+            contractslist2[5].weight = 5;
+            contractslist2[5].value = 24;
         }
         /// <summary>
         /// This is the randomizer for Company Info.  Company Amounts is limited by this check.  The values can be changed in MCConfig though!
@@ -733,7 +754,7 @@ namespace MissionController
                
                 GUILayout.BeginHorizontal();
                 GUILayout.Box(hk.hiredKerbalName, GUILayout.Width(200));
-                GUILayout.Box(MathTools.secondsIntoKerbalTime(hk.DateHired), GUILayout.Width(150));
+                GUILayout.Box(MathTools.secondsIntoRealTime(hk.DateHired), GUILayout.Width(150));
                 GUILayout.Box(hk.statusKerbal, GUILayout.Width(125));
                 GUILayout.EndHorizontal();
             }
@@ -748,7 +769,7 @@ namespace MissionController
             {
                 GUILayout.BeginHorizontal();;
                 GUILayout.Box(ms.missionName, GUILayout.Width(425));
-                GUILayout.Box(MathTools.secondsIntoKerbalTime(ms.endTime), GUILayout.Width(160));
+                GUILayout.Box(MathTools.secondsIntoRealTime(ms.endTime), GUILayout.Width(160));
                 GUILayout.Box(ms.vesselName,GUILayout.Width(275));
                 GUILayout.Box("$ " + ms.payment.ToString("N2"), GUILayout.Width(140));
                 GUILayout.EndHorizontal();
@@ -881,7 +902,7 @@ namespace MissionController
                 {
                     reward(m.reward);
                     totalReward(m.reward);
-                    status.payment = m.reward;
+                    status.payment = currentMissionPayment;
                     if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER)
                     {
                         sciencereward(m.scienceReward);
@@ -1406,8 +1427,7 @@ namespace MissionController
         {
             get { return currentProgram.randomLandingScience; }
         }
-        
-       
+
         /// <summary>
         /// Checks if the given vessel is controlled by a client.
         /// </summary>
@@ -1505,6 +1525,8 @@ namespace MissionController
                 latestExpenses = -value;
                 currentProgram.money += (int)((double)value * PayoutLeveles.TechPayout);
                 testBudget(value);
+                currentMissionPayment = 0;
+                currentMissionPayment = (int)((double)value * PayoutLeveles.TechPayout);
             }
             return currentProgram.money;
         }

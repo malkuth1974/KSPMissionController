@@ -39,7 +39,7 @@ namespace MissionController
                 GUILayout.BeginHorizontal();
                 if (m.contractAvailable == manager.GetCurrentContract && s.missionAlreadyFinished == false && s.requiresAnotherMission == false)
                 {                  
-                    if (GUILayout.Button(m.name, style, GUILayout.Width(325), GUILayout.Height(45)))
+                    if (GUILayout.Button(m.name, style, GUILayout.Width(325), GUILayout.Height(35)))
                     {
                         currentPreviewMission2 = manager.reloadMission(m, activeVessel);
                         if (manager.Getrandomcontractsfreeze != true && vrLock != true)
@@ -49,9 +49,10 @@ namespace MissionController
                             vrLock = true;
                         }
                     }
+                    
                     if (currentPreviewMission2 != null)
                     {
-                        if (GUILayout.Button("Accept Contract", GUILayout.Height(45)))
+                        if (GUILayout.Button("Accept Contract", GUILayout.Width(150), GUILayout.Height(35)))
                         {
                             // we also reset the hiddenGoals field
                             manager.SetCurrentContract1(0);
@@ -65,19 +66,36 @@ namespace MissionController
                             vrLock = false;
                         }
                     }
+                    if (s.missionAlreadyFinished)
+                    {
+                        GUILayout.Label(iconFinished, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50), GUILayout.ExpandWidth(false),
+                                        GUILayout.Width(50), GUILayout.Height(50));
+                    }
+                    else
+                    {
+                        foreach (Mission.Category c in iconDictionary.Keys)
+                        {
+                            if (m.category.Has(c))
+                            {
+                                GUILayout.Label(iconDictionary[c], GUILayout.MaxWidth(50), GUILayout.MaxHeight(50), GUILayout.ExpandWidth(false),
+                                                 GUILayout.Width(50), GUILayout.Height(50));
+                            }
+                        }
+                    }
                 }
                 
                 GUILayout.EndHorizontal();
                 GUILayout.BeginHorizontal();
                 if (m.contractAvailable == manager.GetCurrentContract1)
                 {
-                    if (GUILayout.Button(m.name, style, GUILayout.Width(325), GUILayout.Height(45)))
+                    if (GUILayout.Button(m.name, style, GUILayout.Width(325), GUILayout.Height(35)))
                     {
                         currentPreviewMission2 = manager.reloadMission(m, activeVessel);
                     }
+                    
                     if (currentPreviewMission2 != null)
                     {
-                        if (GUILayout.Button("Accept Contract", GUILayout.Height(45)))
+                        if (GUILayout.Button("Accept Contract", GUILayout.Width(150), GUILayout.Height(35)))
                         {
                             // we also reset the hiddenGoals field
                             manager.SetCurrentContract(0);
@@ -90,6 +108,22 @@ namespace MissionController
                             manager.Setrandomcontractfreeze(true);
                         }
                     }
+                    if (s.missionAlreadyFinished)
+                    {
+                        GUILayout.Label(iconFinished, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50), GUILayout.ExpandWidth(false),
+                                        GUILayout.Width(50), GUILayout.Height(50));
+                    }
+                    else
+                    {
+                        foreach (Mission.Category c in iconDictionary.Keys)
+                        {
+                            if (m.category.Has(c))
+                            {
+                                GUILayout.Label(iconDictionary[c], GUILayout.MaxWidth(50), GUILayout.MaxHeight(50), GUILayout.ExpandWidth(false),
+                                                 GUILayout.Width(50), GUILayout.Height(50));
+                            }
+                        }
+                    }
                 }
                 
                 GUILayout.EndHorizontal();
@@ -97,7 +131,7 @@ namespace MissionController
                 GUILayout.BeginHorizontal();
                 if (m.contractAvailable == manager.GetCurrentContract2)
                 {
-                    if (GUILayout.Button(m.name, style, GUILayout.Width(325), GUILayout.Height(45)))
+                    if (GUILayout.Button(m.name, style, GUILayout.Width(325), GUILayout.Height(35)))
                     {
                         currentPreviewMission2 = manager.reloadMission(m, activeVessel);
                         if (manager.Getrandomcontractsfreeze != true && asLock != true)
@@ -108,9 +142,10 @@ namespace MissionController
                         }
 
                     }
+                    
                     if (currentPreviewMission2 != null)
                     {
-                        if (GUILayout.Button("Accept Contract", GUILayout.Height(45)))
+                        if (GUILayout.Button("Accept Contract", GUILayout.Width(150), GUILayout.Height(35)))
                         {
                             // we also reset the hiddenGoals field
                             manager.SetCurrentContract1(0);
@@ -122,6 +157,23 @@ namespace MissionController
                             showContractSelection = false;
                             manager.Setrandomcontractfreeze(true);
                             asLock = false;
+                        }
+                    }
+                    
+                    if (s.missionAlreadyFinished)
+                    {
+                        GUILayout.Label(iconFinished, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50), GUILayout.ExpandWidth(false),
+                                        GUILayout.Width(50), GUILayout.Height(50));
+                    }
+                    else
+                    {
+                        foreach (Mission.Category c in iconDictionary.Keys)
+                        {
+                            if (m.category.Has(c))
+                            {
+                                GUILayout.Label(iconDictionary[c], GUILayout.MaxWidth(50), GUILayout.MaxHeight(50), GUILayout.ExpandWidth(false),
+                                                 GUILayout.Width(50), GUILayout.Height(50));
+                            }
                         }
                     }
                 }

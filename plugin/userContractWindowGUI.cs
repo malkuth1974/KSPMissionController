@@ -115,6 +115,10 @@ namespace MissionController
             int sgoalamount = sgoal.Gamount;
             int splanetamount = splanet.Gamount;
             int maxastcount = manager.asteroidCapture.Count;
+            if (manager.asteroidCapture.Count < 1 || manager.asteroidCapture == null)
+            {
+                manager.findAsteriodCapture();
+            }
             AsteriodCapture tempasteroid = manager.asteroidCapture[astcount];
 
             GUI.skin = HighLogic.Skin;

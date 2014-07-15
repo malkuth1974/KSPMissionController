@@ -17,6 +17,8 @@ namespace MissionController
         public bool allowApolloLandings = true;
 
         public bool disableFlight = false;
+
+        public bool disableMCEPrice = false;
     }
 
     public class SettingsManager 
